@@ -15,15 +15,15 @@ SimpleApp::Application.routes.draw do
   #get "static_pages/contact"
   match '/contact', to: 'static_pages#contact'
 
-  get 'users/new'
+  # get 'users/new'
   match '/signup', to: 'users#new'
 
-
-
   resources :microposts
-
-
   resources :users
+  resources :sessions, only: [ :new, :create, :destory ]
+
+  match 'signin', to: 'sessions#new'
+  match 'signout', to: 'sessions#destory', via: :delete
 
 
   # The priority is based upon order of creation:
@@ -35,7 +35,7 @@ SimpleApp::Application.routes.draw do
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  # This route can be invoked with purcha:se_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
