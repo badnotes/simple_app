@@ -2,7 +2,7 @@ require 'spec_helper'
 describe User do
 	# pending "add some example to (or delete) #{__FILE__}"
 	before { @user = User.new(name: "Example User",email: "user@example.com", 
-		password: "foobar", password_confirmation: "foobar")  }
+		password: "foobar", password_confirmation: "foobar" )}
 	subject { @user }
 	it { should respond_to(:name) }  # user.respond_to?(:name) 
 	it { should respond_to(:email) }
@@ -12,7 +12,7 @@ describe User do
 	it {should be_valid}
 
 	describe "when name is not present" do
-		before { @user.name = "" }
+		before { @user.name = "" } 
 		it { should_not be_valid }
 	end
 
