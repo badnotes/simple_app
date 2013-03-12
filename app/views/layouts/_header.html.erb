@@ -4,14 +4,14 @@
           <%= link_to "sample app", '/', id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",    home_path %></li>
-              <li><%= link_to "Help",    help_path %></li>
+              <li><%= link_to  (I18n.t :home),  home_path %></li>
+              <li><%= link_to (I18n.t :help),    help_path %></li>
               <% if signed_in? %>
                 <!-- # Links for signed-in users -->
-                <li><%= link_to "Users", users_path %></li>
+                <li><%= link_to (I18n.t :users), users_path %></li>
                 <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Account <b class="caret"></b>
+                    <%= I18n.t :account %> <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
                     <li><%= link_to "Profile", current_user %></li>
@@ -24,9 +24,16 @@
                 </li>
               <% else %>
                 <!-- # Links for non-signed-in-users -->
-                <li><%= link_to "Sign in", signin_path %></li>
+                <li><%= link_to (I18n.t :signin), signin_path %></li>
               <% end %>
-            </ul>
+              <% if session[:locale] == "en" %>
+                <li><%= link_to "[Chinese]", :controller => controller.controller_name,
+                        :action => controller.action_name, :locale => "zh" %></li>
+              <% else %>
+                <li><%= link_to "[英文]", :controller => controller.controller_name,
+                        :action => controller.action_name, :locale => "en" %></li>
+              <% end %>
+             </ul>
           </nav>
         </div>
       </div>

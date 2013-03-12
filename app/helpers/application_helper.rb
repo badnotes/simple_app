@@ -9,4 +9,8 @@ module ApplicationHelper
 			"{#base_title} | {#page_title}"
 		end
 	end
+
+	def t
+	 	self.t = I18n.t
+	end
 end
