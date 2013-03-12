@@ -1,6 +1,8 @@
 class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
+  before_filter :signed_in_user, only: [:create, :destroy]
+
   def index
     @microposts = Micropost.all
 
@@ -40,15 +42,19 @@ class MicropostsController < ApplicationController
   # POST /microposts
   # POST /microposts.json
   def create
-    @micropost = Micropost.new(params[:micropost])
+    #@micropost = Micropost.new(params[:micropost])
+    @micropost = current_user.microposts.build(params[:micropost])
 
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Micropost was successfully created.' }
         format.json { render json: @micropost, status: :created, location: @micropost }
+        #flash[:success] = "Micropost created ."
+        #redirect_to @root_url
       else
-        format.html { render action: "new" }
+        format.html { redirect_to home_path}
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
+        #render home_path
       end
     end
   end
