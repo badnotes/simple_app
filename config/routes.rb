@@ -19,13 +19,13 @@ SimpleApp::Application.routes.draw do
   match '/signup', to: 'users#new'
 
   resources :users
-  resources :microposts, only: [:create, :destory]
-  resources :sessions, only: [ :new, :create, :destory ]
+  resources :microposts, only: [:create, :destroy]
+  resources :sessions, only: [ :new, :create, :destroy ]
 
   # match '/send', to: 'microposts#new'
 
   match 'signin', to: 'sessions#new'
-  match 'signout', to: 'sessions#destory', via: :delete
+  match 'signout', to: 'sessions#destroy', via: :delete
 
 
   # The priority is based upon order of creation:

@@ -82,7 +82,8 @@ class MicropostsController < ApplicationController
     @micropost.destroy
 
     respond_to do |format|
-      format.html { redirect_to microposts_url }
+      #format.html { redirect_to microposts_url }
+      format.html { redirect_to home_path }
       format.json { head :no_content }
     end
   end

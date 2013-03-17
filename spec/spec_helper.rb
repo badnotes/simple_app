@@ -7,7 +7,14 @@ require 'rspec/autorun'
 # Add this to load Capybara integration:
 require 'capybara/rspec'
 require 'capybara/rails'
-include Capybara::DSL
+require 'factory_girl_rails'
+#include Capybara::DSL
+module ::RSpec::Core
+  class ExampleGroup
+    include Capybara::DSL
+    include Capybara::RSpecMatchers
+  end
+end 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
