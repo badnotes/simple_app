@@ -18,10 +18,19 @@ SimpleApp::Application.routes.draw do
   # get 'users/new'
   match '/signup', to: 'users#new'
 
-  resources :users
+  # resources :users do
+  #   collection do
+  #     get :trigers
+  #   end
+  # end
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :microposts, only: [:create, :destroy]
   resources :sessions, only: [ :new, :create, :destroy ]
-
+  resources :relationships, only: [:create, :destroy]
   # match '/send', to: 'microposts#new'
 
   match 'signin', to: 'sessions#new'

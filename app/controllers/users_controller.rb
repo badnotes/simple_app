@@ -92,7 +92,13 @@ class UsersController < ApplicationController
     end
   end
 
-   private
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: parama[:page])
+    render 'show_follow'
+  end
+  private
     # redirect_to signin_path, notice: "Please sign in ." unless signed_in?
     # def was moved to sessions_helper
     # def signed_in_user
@@ -108,5 +114,4 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_path) unless current_user.admin?
     end
-
 end
