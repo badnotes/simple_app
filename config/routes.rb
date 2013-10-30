@@ -1,22 +1,22 @@
 SimpleApp::Application.routes.draw do
   #get "static_pages/home"
-  root to: 'static_pages#home'
+  root to: 'static_pages#home', via: [:get, :post]
 
-  match '/', to: 'static_pages#home'
+  match '/', to: 'static_pages#home', via: [:get, :post]
 
-  match '/home', to: 'static_pages#home'
+  match '/home', to: 'static_pages#home', via: [:get, :post]
 
   #get "static_pages/help"
-  match '/help', to: 'static_pages#help'
+  match '/help', to: 'static_pages#help', via: [:get, :post]
 
   #get "static_pages/about"
-  match '/about', to: 'static_pages#about'
+  match '/about', to: 'static_pages#about', via: [:get, :post]
 
   #get "static_pages/contact"
-  match '/contact', to: 'static_pages#contact'
+  match '/contact', to: 'static_pages#contact', via: [:get, :post]
 
   # get 'users/new'
-  match '/signup', to: 'users#new'
+  match '/signup', to: 'users#new', via: [:get, :post]
 
   # resources :users do
   #   collection do
@@ -33,7 +33,7 @@ SimpleApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   # match '/send', to: 'microposts#new'
 
-  match 'signin', to: 'sessions#new'
+  match 'signin', to: 'sessions#new', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', via: :delete
 
 
